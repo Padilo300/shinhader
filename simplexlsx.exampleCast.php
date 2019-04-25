@@ -56,15 +56,26 @@ function getColumn($item , $nameArr){
 }
 
 function returnColumnAdres($row , $ardessArr){
+    print_r($row);
+    die();
     $result = array();
+
     foreach ($row as $rowItem){
+        $i = 0;
         foreach ($ardessArr as $item) {
-            //$rowItem = preg_replace('/\s+/', '', $rowItem); // удалим все пробелы что-бы не мешали искать
+            $i++;
+            $rowItem = preg_replace('/\s+/', '', $rowItem); // удалим все пробелы что-бы не мешали искать
             if(stristr(mb_strtolower($rowItem), $item)){
-                $result[] = array_search($item,$row );
+                echo "$item <hr>";
+                $result[] = $i;
             }
         }
     }
+    $str = null;
+    foreach ($result as $item) {
+        $str .= ' ' . $row[$item];
+    }
+    echo  "<hr>$str<hr>";
     return $result;
 }
 
